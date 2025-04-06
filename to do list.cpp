@@ -8,6 +8,7 @@ const string UNDERLINE ="\033[4m";
 const string ITALIC ="\033[3m";
 const string RESET="\033[0m";
 char choice;
+string name;
 
 class Todo {
 private:
@@ -58,19 +59,32 @@ public:
                 if (choice == 'n' || choice == 'N') {
                     taskCompleted = true;
                 }
+                
                 else if (choice == 'd' || choice == 'D') {
-                    string distract;
-                    cout << BOLD << UNDERLINE << "ENTER DISTRACTION: " << RESET << endl;
-                    getline(cin, distract);
-                    distraction.push_back(distract);
-                }
-                else {
+    if (distraction[0] == "NONE") {
+        distraction.clear(); // Remove "NONE" on first distraction
+    }
+    string distract;
+    cout << BOLD << UNDERLINE << "ENTER DISTRACTION: " << RESET << endl;
+    getline(cin, distract);
+    distraction.push_back(distract);
+}else {
                     cout << "Invalid choice. Please type 'N' or 'D'." << endl;
                     system("cls");
                     goto label;
                 }
             }
         }
+        system("cls");
+	cout<<BOLD<<UNDERLINE<<name<<"'s TODO LIST"<<RESET<<endl;
+	cout<<BOLD<<UNDERLINE<<"Congratulation ! YOU HAVE COMPLETED ALL TASK"<<RESET<<endl;
+	cout<<"TO YOU WANT TO SEE Distraction BETWEEN YOUR TASKS. IF YES TYPE 'Y' OR ELSE 'E'";
+	cin>>choice;
+	if(choice=='Y'|| choice=='y'){
+	for (int i = 0; i < distraction.size(); i++) {
+    cout << BOLD << i + 1 << ":-] " << UNDERLINE << distraction[i] << RESET << endl;
+}
+	}
     }
    
 };
@@ -78,7 +92,7 @@ public:
 
 int main(){
 	system("cls");
-	string name;
+	
 	cout<<BOLD<<"WHAT IS YOUR NAME : "<<RESET;
 	getline(cin,name);
 	system("cls");
@@ -87,16 +101,7 @@ int main(){
 	task.info();
 	system("cls");
 	task.display_info();
-	system("cls");
-	cout<<BOLD<<UNDERLINE<<name<<"'s TODO LIST"<<RESET<<endl;
-	cout<<BOLD<<UNDERLINE<<"Congratulation ! YOU HAVE COMPLETED ALL TASK"<<RESET<<endl;
-	cout<<"TO YOU WANT TO SEE Distraction BETWEEN YOUR TASKS. IF YES TYPE 'Y' OR ELSE 'E'";
-	if(choice=='Y'|| choice=='y'){
-		for(int i=0;i<ditstraction.size();i++){
-			cout<<BOLD<<i+1<<<<":-] "<<UNDERLINE<<ditstraction.push_back(i)<<RESET<<endl;
-		}
-	}
+	
 	
 	return 0;
-	
 }
